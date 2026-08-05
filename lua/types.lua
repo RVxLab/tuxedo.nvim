@@ -12,7 +12,7 @@
 ---@class Tuxedo.Resolved.Config
 ---@field terminal Tuxedo.TerminalConfig
 ---@field tuxedo_cmd string|string[]
----@field command string
+---@field command ?string
 
 ---@class Tuxedo.TerminalConfig : Tuxedo.Resolved.TerminalConfig
 ---@field width ?number

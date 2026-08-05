@@ -74,9 +74,11 @@ function M.setup(opts)
 
     M.config = vim.tbl_deep_extend("force", {}, M.config or {}, options)
 
-    vim.api.nvim_create_user_command(M.config.command, function()
-        M.tuxedo()
-    end, {})
+    if M.config.command ~= nil then
+        vim.api.nvim_create_user_command(M.config.command, function()
+            M.tuxedo()
+        end, {})
+    end
 end
 
 return M
