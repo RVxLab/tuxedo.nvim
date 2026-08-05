@@ -2,11 +2,13 @@
 
 Open [Tuxedo](https://github.com/webstonehq/tuxedo) in a floating window.
 
+Supports Neovim 0.11+
+
 ## Installation
 
 Install through your favourite package manager.
 
-## vim.pack
+## vim.pack (0.12+)
 
 ```lua
 vim.pack.add({
@@ -25,6 +27,8 @@ end, {
 ```
 
 ## ZPack / Lazy
+
+*Note: ZPack requires Neovim 0.12+*
 
 ```lua
 {
@@ -87,7 +91,7 @@ You can change the user command by overriding the `command` option:
 }
 ```
 
-*Note:* If you do this when using Zpack or Lazy, make sure you also set this command in `cmd`
+*Note: If you do this when using Zpack or Lazy, make sure you also set this command in `cmd`*
 
 ## Examples
 

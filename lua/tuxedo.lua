@@ -69,6 +69,12 @@ end
 ---Set up the Tuxedo plugin
 ---@param opts ?Tuxedo.Config
 function M.setup(opts)
+    if vim.fn.has("nvim-0.11") == 0 then
+        vim.notify_once("tuxedo.nvim requires Neovim 0.11+", vim.log.levels.ERROR)
+
+        return
+    end
+
     ---@type Tuxedo.Config
     local options = opts or {}
 
