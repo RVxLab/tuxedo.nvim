@@ -28,8 +28,11 @@ end, {
 
 ```lua
 {
-    -- src is required since it's not hosted on Github
-    src = "https://code.rvx.works/RVxLab/tuxedo.nvim",
+    -- `url` is required since it's not hosted on Github
+    url = "https://code.rvx.works/RVxLab/tuxedo.nvim",
+
+    -- Optional: If using ZPack you can use `src` instead
+    -- src = "https://code.rvx.works/RVxLab/tuxedo.nvim",
     
     -- Set up lazy loading with the user command
     cmd = "Tuxedo",
@@ -40,9 +43,7 @@ end, {
             "<leader>T",
             function () require("tuxedo").tuxedo() end,
             mode = "n",
-            opts = {
-                desc = "Open Tuxedo",
-            },
+            desc = "Open Tuxedo",
         },
     },
 
