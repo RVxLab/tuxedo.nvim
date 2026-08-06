@@ -1,5 +1,7 @@
 ---@module "tuxedo"
 
+---@alias Tuxedo.TuxedoCommand string|string[]|nil|(fun(): string|string[]|nil)
+
 ---@class Tuxedo
 ---@field config ?Tuxedo.Resolved.Config
 ---@field setup fun(opts?: Tuxedo.Config): nil
@@ -11,7 +13,7 @@
 
 ---@class Tuxedo.Resolved.Config
 ---@field terminal Tuxedo.TerminalConfig
----@field tuxedo_cmd string|string[]
+---@field tuxedo_cmd Tuxedo.TuxedoCommand
 ---@field command ?string
 
 ---@class Tuxedo.TerminalConfig : Tuxedo.Resolved.TerminalConfig

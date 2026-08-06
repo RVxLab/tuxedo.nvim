@@ -14,6 +14,17 @@ M.config = {
 local win_id
 local buf_id
 
+---Resolve the tuxedo command
+---@param command Tuxedo.TuxedoCommand
+---@return string|string[]|nil
+local function resolve_tuxedo_command(command)
+    if type(command) == "function" then
+        return command()
+    end
+
+    return command
+end
+
 function M.tuxedo()
     local uis = vim.api.nvim_list_uis()
 
@@ -30,6 +41,14 @@ function M.tuxedo()
     local row = math.ceil((height - win_height) / 2) - 1
     local col = math.ceil((width - win_width) / 2)
 
+    local command = resolve_tuxedo_command(M.config.tuxedo_cmd)
+
+    if command == nil then
+        vim.notify("No `tuxedo` command given", vim.log.levels.ERROR)
+
+        return
+    end
+
     buf_id = vim.api.nvim_create_buf(false, true)
 
     win_id = vim.api.nvim_open_win(buf_id, true, {
@@ -44,7 +63,7 @@ function M.tuxedo()
         title_pos = "left",
     })
 
-    vim.fn.jobstart(M.config.tuxedo_cmd, {
+    vim.fn.jobstart(command, {
         term = true,
         on_exit = function()
             if win_id and vim.api.nvim_win_is_valid(win_id) then
