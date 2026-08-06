@@ -55,6 +55,10 @@ function M.tuxedo()
         end,
     })
 
+    vim.api.nvim_set_option_value("winfixbuf", true, {
+        win = win_id,
+    })
+
     vim.api.nvim_set_option_value("bufhidden", "wipe", {
         buf = buf_id,
     })
