@@ -14,6 +14,22 @@ M.config = {
 local win_id
 local buf_id
 
+---Wrapper around notify
+---@param msg string The message to send
+---@param level ?integer The log level, see `vim.log.levels`
+---@param opts ?table Options for the notification. Not related to vim.notify's opts
+local function notify(msg, level, opts)
+    msg = "[tuxedo.nvim]: " .. msg
+
+    opts = opts or {}
+
+    if opts.once == true then
+        vim.notify_once(msg, level)
+    else
+        vim.notify(msg, level)
+    end
+end
+
 ---Resolve the tuxedo command
 ---@param command Tuxedo.TuxedoCommand
 ---@return string|string[]|nil
@@ -44,7 +60,7 @@ function M.tuxedo()
     local command = resolve_tuxedo_command(M.config.tuxedo_cmd)
 
     if command == nil then
-        vim.notify("No `tuxedo` command given", vim.log.levels.ERROR)
+        notify("No `tuxedo` command given", vim.log.levels.ERROR)
 
         return
     end
@@ -93,7 +109,9 @@ end
 ---@param opts ?Tuxedo.Config
 function M.setup(opts)
     if vim.fn.has("nvim-0.11") == 0 then
-        vim.notify_once("tuxedo.nvim requires Neovim 0.11+", vim.log.levels.ERROR)
+        notify("tuxedo.nvim requires Neovim 0.11+", vim.log.levels.ERROR, {
+            once = true,
+        })
 
         return
     end
