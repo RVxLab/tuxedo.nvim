@@ -65,7 +65,7 @@ This is the default configuration:
 ---@module "tuxedo"
 ---@type Tuxedo.Config
 {
-    -- The command to run Tuxedo. This can be a string for a normal invocation or a table of strings if more arguments are involved.
+    -- The command to run Tuxedo, passed to `vim.jobstart`. May be a string, string[], a function returning one of either, or `nil`
     tuxedo_cmd = "tuxedo",
 
     -- The size ratios for the terminal between 0 and 1
@@ -78,6 +78,16 @@ This is the default configuration:
     command = "Tuxedo",
 }
 ```
+
+### Adjusting the `tuxedo_cmd` option
+
+If you have more complex checks into determining which `tuxedo` binary to use, such as when you use [Nix](./examples/nix.lua) or [Mise](./examples/mise.lua), you can pass a function to the `tuxedo_cmd` option.
+
+This function must return a `string`, `string[]` or `nil`.
+
+In the case of `nil`, no floating window will be created and an error will be shown.
+
+For an example how this is used in a config, see [tuxedo.lua in my config](https://code.rvx.works/RVxLab/rvx.nvim/src/branch/main/lua/plugins/tuxedo.lua).
 
 ### Changing the user command
 
