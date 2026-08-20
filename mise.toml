@@ -1,3 +1,32 @@
 [tools]
 "aqua:Kampfkarren/selene" = "0.31"
 stylua = "2.4"
+
+[tasks.release]
+description = "Tag a release and push it"
+usage = '''
+arg "<tag>" help="The git tag"
+arg "<message>" help="A message to associate with the tag"
+'''
+
+run = '''
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+version="$usage_tag"
+message="${usage_message:?No message set}"
+
+# Ensure the version has the right format (x.y.z)
+if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]
+then
+    echo "Version number does not match semantic versioning pattern (x.y.z)"
+    exit 1
+fi
+
+version="v$version"
+
+git tag -a "$version" -m "$message"
+git push origin "$version"
+'''
+
