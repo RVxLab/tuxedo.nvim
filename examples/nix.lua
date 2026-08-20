@@ -1,6 +1,6 @@
 -- Using vim.pack
 vim.pack.add({
-    "https://code.rvx.works/RVxLab/tuxedo.nvim",
+    "https://github.com/RVxLab/tuxedo.nvim",
     ...,
 })
 
@@ -15,7 +15,7 @@ require("tuxedo")
 
 -- Using ZPack or Lazy
 {
-    src = "https://code.rvx.works/RVxLab/tuxedo.nvim",
+    src = "RVxLab/tuxedo.nvim",
     ---@module "tuxedo"
     ---@type Tuxedo.Config
     opts = {

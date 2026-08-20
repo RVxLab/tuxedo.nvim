@@ -12,8 +12,17 @@ Install through your favourite package manager.
 
 ```lua
 vim.pack.add({
-    "https://code.rvx.works/RVxLab/tuxedo.nvim",
+    -- Using `main` branch
+    "https://github.com/RVxLab/tuxedo.nvim",
+
+    -- If you wish to pin the version
+    {
+        src = "https://github.com/RVxLab/tuxedo.nvim",
+        version = vim.version.range("^1.0.0"),
+    },
     ...
+
+
 })
 
 require("tuxedo").setup()
@@ -26,18 +35,124 @@ end, {
 })
 ```
 
-## ZPack / Lazy
-
-*Note: ZPack requires Neovim 0.12+*
+## ZPack (0.12+)
 
 ```lua
 {
-    -- `url` is required since it's not hosted on Github
-    url = "https://code.rvx.works/RVxLab/tuxedo.nvim",
-
-    -- Optional: If using ZPack you can use `src` instead
-    -- src = "https://code.rvx.works/RVxLab/tuxedo.nvim",
+    "RVxLab/tuxedo.nvim",
     
+    -- Optional: If you wish to pin the version
+    sem_version = "^1.0.0",
+
+    -- Set up lazy loading with the user command
+    cmd = "Tuxedo",
+
+    -- Set up lazy loading with a keymap
+    keys = {
+        {
+            "<leader>T",
+            function () require("tuxedo").tuxedo() end,
+            mode = "n",
+            desc = "Open Tuxedo",
+        },
+    },
+
+    ---@module "tuxedo"
+    ---@type Tuxedo.Config
+    opts = {},
+}
+```
+
+## Lazy.nvim
+```lua
+{
+    "RVxLab/tuxedo.nvim",
+    
+    -- Optional: If you wish to pin the version
+    version = "^1.0.0",
+
+    -- Set up lazy loading with the user command
+    cmd = "Tuxedo",
+
+    -- Set up lazy loading with a keymap
+    keys = {
+        {
+            "<leader>T",
+            function () require("tuxedo").tuxedo() end,
+            mode = "n",
+            desc = "Open Tuxedo",
+        },
+    },
+
+    ---@module "tuxedo"
+    ---@type Tuxedo.Config
+    opts = {},
+}
+```
+
+## Using my mirror
+
+If you wish to use my [mirrored git repo](https://code.rvx.works/RVxLab/tuxedo.nvim) you need to make a couple of small changes:
+
+### vim.pack
+
+```diff
+vim.pack.add({
+    -- Using `main` branch
+-   "https://github.com/RVxLab/tuxedo.nvim",
++   "https://code.rvx.works/RVxLab/tuxedo.nvim",
+
+    -- If you wish to pin the version
+    { 
+-       src = "https://github.com/RVxLab/tuxedo.nvim",
++       src = "https://code.rvx.works/RVxLab/tuxedo.nvim",
+        version = vim.version.range("^1.0.0"),
+    },
+    ...
+
+    
+})
+```
+
+### ZPack
+
+```diff
+{
+-   "RVxLab/tuxedo.nvim",
++   src = "https://github.com/RVxLab/tuxedo.nvim",
+    
+    -- Optional: If you wish to pin the version
+    sem_version = "^1.0.0",
+
+    -- Set up lazy loading with the user command
+    cmd = "Tuxedo",
+
+    -- Set up lazy loading with a keymap
+    keys = {
+        {
+            "<leader>T",
+            function () require("tuxedo").tuxedo() end,
+            mode = "n",
+            desc = "Open Tuxedo",
+        },
+    },
+
+    ---@module "tuxedo"
+    ---@type Tuxedo.Config
+    opts = {},
+}
+```
+
+### Lazy.nvim
+
+```diff
+{
+-   "RVxLab/tuxedo.nvim",
++   url = "https://github.com/RVxLab/tuxedo.nvim",
+    
+    -- Optional: If you wish to pin the version
+    version = "^1.0.0",
+
     -- Set up lazy loading with the user command
     cmd = "Tuxedo",
 
