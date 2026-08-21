@@ -4,11 +4,28 @@ Open [Tuxedo](https://github.com/webstonehq/tuxedo) in a floating window.
 
 Supports Neovim 0.11+
 
-## Installation
+## Table of Contents
+
+- [Installation](#installation)
+    - [vim.pack (0.12+)](#installation-vim-pack)
+    - [ZPack (0.12+)](#installation-zpack)
+    - [Lazy.nvim](#installation-lazy-nvim)
+    - [Using my mirror](#installation-mirror)
+        - [vim.pack](#installation-mirror-vim-pack)
+        - [ZPack](#installation-mirror-zpack)
+        - [Lazy.nvim](#installation-mirror-lazy-nvim)
+- [Configuration](#configuration)
+    - [Adjusting the `tuxedo_cmd` option](#configuration-tuxedo-cmd)
+    - [Changing the user command](#configuration-user-command)
+- [Examples](#examples)
+- [Acknowledgements](#acknowledgements)
+- [License](#license)
+
+## <a name="installation"></a>Installation
 
 Install through your favourite package manager.
 
-## vim.pack (0.12+)
+### <a name="installation-vim-pack"></a>vim.pack (0.12+)
 
 ```lua
 vim.pack.add({
@@ -35,7 +52,7 @@ end, {
 })
 ```
 
-## ZPack (0.12+)
+### <a name="installation-zpack"></a>ZPack (0.12+)
 
 ```lua
 {
@@ -63,7 +80,7 @@ end, {
 }
 ```
 
-## Lazy.nvim
+### <a name="installation-lazy-nvim"></a>Lazy.nvim
 ```lua
 {
     "RVxLab/tuxedo.nvim",
@@ -90,11 +107,11 @@ end, {
 }
 ```
 
-## Using my mirror
+### <a name="installation-mirror"></a>Using my mirror
 
 If you wish to use my [mirrored git repo](https://code.rvx.works/RVxLab/tuxedo.nvim) you need to make a couple of small changes:
 
-### vim.pack
+#### <a name="installation-mirror-vim-pack">vim.pack
 
 ```diff
 vim.pack.add({
@@ -114,7 +131,7 @@ vim.pack.add({
 })
 ```
 
-### ZPack
+#### <a name="installation-mirror-zpack"></a>ZPack
 
 ```diff
 {
@@ -143,7 +160,7 @@ vim.pack.add({
 }
 ```
 
-### Lazy.nvim
+#### <a name="installation-mirror-lazy-nvim"></a>Lazy.nvim
 
 ```diff
 {
@@ -172,7 +189,7 @@ vim.pack.add({
 }
 ```
 
-## Configuration
+## <a name="configuration"></a>Configuration
 
 This is the default configuration:
 
@@ -194,7 +211,7 @@ This is the default configuration:
 }
 ```
 
-### Adjusting the `tuxedo_cmd` option
+### <a name="configuration-tuxedo-cmd"></a>Adjusting the `tuxedo_cmd` option
 
 If you have more complex checks into determining which `tuxedo` binary to use, such as when you use [Nix](./examples/nix.lua) or [Mise](./examples/mise.lua), you can pass a function to the `tuxedo_cmd` option.
 
@@ -204,7 +221,7 @@ In the case of `nil`, no floating window will be created and an error will be sh
 
 For an example how this is used in a config, see [tuxedo.lua in my config](https://code.rvx.works/RVxLab/rvx.nvim/src/branch/main/lua/plugins/tuxedo.lua).
 
-### Changing the user command
+### <a name="configuration-user-command"></a>Changing the user command
 
 You can change the user command by overriding the `command` option:
 
@@ -218,14 +235,14 @@ You can change the user command by overriding the `command` option:
 
 *Note: If you do this when using Zpack or Lazy, make sure you also set this command in `cmd`*
 
-## Examples
+## <a name="examples"></a>Examples
 
 Check the [examples/](./examples) folder for some examples on how you can use this plugin.
 
-## Acknowledgements
+## <a name="acknowledgements"></a>Acknowledgements
 
 - [Iogamaster](https://github.com/IogaMaster) for their [tuxedo.nvim](https://github.com/IogaMaster/tuxedo.nvim) which served as a learning reference making this plugin
 
-## License
+## <a name="license"></a>License
 
 This plugin is licensed under [MIT](./LICENSE).
