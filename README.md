@@ -208,6 +208,15 @@ This is the default configuration:
 
     -- The user command by which to invoke Tuxedo. Set to `nil` to disable
     command = "Tuxedo",
+
+    -- Configuration for the todo file itself
+    todo_file = {
+        -- Whether to create the todo file if it doesn't exist
+        create_if_not_exists = true,
+
+        -- The file to open. If it doesn't exist and `create_if_not_exists` is set to `true`, it will be created
+        file_name = "todo.txt",
+    },
 }
 ```
 
