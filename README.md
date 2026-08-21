@@ -136,7 +136,7 @@ vim.pack.add({
 ```diff
 {
 -   "RVxLab/tuxedo.nvim",
-+   src = "https://github.com/RVxLab/tuxedo.nvim",
++   src = "https://code.rvx.works/RVxLab/tuxedo.nvim",
     
     -- Optional: If you wish to pin the version
     sem_version = "^1.0.0",
@@ -165,7 +165,7 @@ vim.pack.add({
 ```diff
 {
 -   "RVxLab/tuxedo.nvim",
-+   url = "https://github.com/RVxLab/tuxedo.nvim",
++   url = "https://code.rvx.works/RVxLab/tuxedo.nvim",
     
     -- Optional: If you wish to pin the version
     version = "^1.0.0",
