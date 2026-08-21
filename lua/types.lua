@@ -1,6 +1,7 @@
 ---@module "tuxedo"
 
----@alias Tuxedo.TuxedoCommand string|string[]|nil|(fun(): string|string[]|nil)
+---@alias Tuxedo.TuxedoCommand string|string[]|nil
+---@alias Tuxedo.TuxedoCommandResolver fun(): Tuxedo.TuxedoCommand
 
 ---@class Tuxedo
 ---@field config ?Tuxedo.Resolved.Config
@@ -13,7 +14,7 @@
 
 ---@class Tuxedo.Resolved.Config
 ---@field terminal Tuxedo.TerminalConfig
----@field tuxedo_cmd Tuxedo.TuxedoCommand
+---@field tuxedo_cmd Tuxedo.TuxedoCommand|Tuxedo.TuxedoCommandResolver
 ---@field command ?string
 ---@field todo_file Tuxedo.Resolved.TodoFile
 
@@ -26,11 +27,11 @@
 ---@field height ?number
 
 ---@class Tuxedo.Config : Tuxedo.Resolved.Config
----@field terminal ?Tuxedo.TerminalConfig
----@field tuxedo_cmd ?(string|string[])
----@field command ?string
----@field todo_file Tuxedo.TodoFile
+---@field terminal? Tuxedo.TerminalConfig
+---@field tuxedo_cmd? Tuxedo.TuxedoCommand|Tuxedo.TuxedoCommandResolver
+---@field command? string
+---@field todo_file? Tuxedo.TodoFile
 
 ---@class Tuxedo.TodoFile : Tuxedo.Resolved.TodoFile
----@field create_if_not_exists ?boolean
----@field file_name ?string
+---@field create_if_not_exists? boolean
+---@field file_name? string
