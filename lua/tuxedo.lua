@@ -9,6 +9,10 @@ M.config = {
         width = 0.85,
         height = 0.7,
     },
+    todo_file = {
+        create_if_not_exists = true,
+        file_name = "todo.txt",
+    },
 }
 
 local win_id
@@ -41,6 +45,20 @@ local function resolve_tuxedo_command(command)
     return command
 end
 
+---Create the todo file if needed
+---@param config Tuxedo.Resolved.TodoFile
+local function create_todo_file_if_needed(config)
+    if not config.create_if_not_exists then
+        return
+    end
+
+    if vim.fn.glob(config.file_name) ~= "" then
+        return
+    end
+
+    vim.fn.writefile("", config.file_name)
+end
+
 function M.tuxedo()
     local uis = vim.api.nvim_list_uis()
 
@@ -64,6 +82,8 @@ function M.tuxedo()
 
         return
     end
+
+    create_todo_file_if_needed(M.config.todo_file)
 
     buf_id = vim.api.nvim_create_buf(false, true)
 
@@ -119,7 +139,7 @@ function M.setup(opts)
     ---@type Tuxedo.Config
     local options = opts or {}
 
-    M.config = vim.tbl_deep_extend("force", {}, M.config or {}, options)
+    M.config = vim.tbl_deep_extend("keep", {}, options, M.config or {})
 
     if M.config.command ~= nil then
         vim.api.nvim_create_user_command(M.config.command, function()
